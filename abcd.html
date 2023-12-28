@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Surprise</title>
+</head>
+<body>
+
+<div class="container">
+    <button class="reveal-button" id="revealButton" onclick="revealMessage()">Click me</button>
+    <div class="hidden-message" id="hiddenMessage">
+        <p> ❤️ Hello Bebbyy ! ❤️</p>
+        <p> 😚 You mean the world to me ! 😚 </p>
+        <p> 🥰 I love you more than words can express. 🥰</p>
+        <p> 😍 I hope this message brings a smile to your face. 😍</p>
+        <p> 🤗 I Love You.... 🤗 </p>
+    </div>
+    <div class="falling-hearts" id="fallingHearts"></div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden; /* Hide overflow to prevent scrollbars */
+        background-color: #f9eaf3; /* Soft pink background */
+    }
+
+    .container {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reveal-button {
+        background-color: #e44d77; /* Pink button color */
+        color: #fff;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .reveal-button:hover {
+        background-color: #c7385d; /* Darker pink on hover */
+    }
+
+    .hidden-message {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: #ffecf3; /* Light pink message box */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hidden-message.show {
+        display: block;
+    }
+
+    .falling-hearts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .falling-heart {
+        position: absolute;
+        font-size: 2em;
+        color: #e44d77; /* Pink heart color */
+        animation: fallAnimation 2s ease-in-out infinite;
+    }
+
+    @keyframes fallAnimation {
+        0% {
+            transform: translateY(0);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    function revealMessage() {
+        const hiddenMessage = document.getElementById('hiddenMessage');
+        const revealButton = document.getElementById('revealButton');
+        const fallingHearts = document.getElementById('fallingHearts');
+
+        // Toggle the 'show' class on the hiddenMessage element
+        hiddenMessage.classList.toggle('show');
+
+        // Hide the button after the message is shown
+        revealButton.classList.add('hide');
+
+        // Create and append falling hearts
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤️';
+            heart.classList.add('falling-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            fallingHearts.appendChild(heart);
+        }
+    }
+</script>
+
+</body>
+</html>
